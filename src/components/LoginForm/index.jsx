@@ -1,5 +1,6 @@
 import { Component } from "react";
 import styles from "./LoginForm.module.css";
+import classNames from "classnames";
 
 class LoginForm extends Component {
   constructor(props) {
@@ -7,22 +8,34 @@ class LoginForm extends Component {
 
     this.state = {
       name: "",
+      isNameValid: false,
       email: "",
+      isEmailValid: false,
       password: "",
+      isPasswordValid: false,
       isChecked: false,
     };
   }
 
   handleNameChange = (e) => {
-    this.setState({ name: e.target.value });
+    this.setState({
+      name: e.target.value,
+      isNameValid: /^[A-Z][a-z]{3,15} [A-Z][a-z]{3,15}$/.test(e.target.value),
+    });
   };
 
   handleEmailChange = (e) => {
-    this.setState({ email: e.target.value });
+    this.setState({
+      email: e.target.value,
+      isEmailValid: /^.+@.+$/.test(e.target.value),
+    });
   };
 
   handlePasswordChange = (e) => {
-    this.setState({ password: e.target.value });
+    this.setState({
+      password: e.target.value,
+      isPasswordValid: /^[A-Za-z0-9]{6,}$/.test(e.target.value),
+    });
   };
 
   handleSubmit = (e) => {
@@ -31,6 +44,20 @@ class LoginForm extends Component {
   };
 
   render() {
+    const nameValidation = classNames(styles.averageInput, {
+      [styles.validInput]: this.state.isNameValid,
+      [styles.invalidInput]: !this.state.isNameValid,
+    });
+
+    const emailValidation = classNames(styles.averageInput, {
+      [styles.validInput]: this.state.isEmailValid,
+      [styles.invalidInput]: !this.state.isEmailValid,
+    });
+    const passwordValidation = classNames(styles.averageInput, {
+      [styles.validInput]: this.state.isPasswordValid,
+      [styles.invalidInput]: !this.state.isPasswordValid,
+    });
+
     return (
       <div className={styles.formContainer}>
         <h1>Login Form</h1>
@@ -38,6 +65,7 @@ class LoginForm extends Component {
           <label>
             <span>Full Name</span>
             <input
+              className={nameValidation}
               type="text"
               name="name"
               placeholder="Name Surname"
@@ -49,6 +77,7 @@ class LoginForm extends Component {
           <label>
             <span>Email adress</span>
             <input
+              className={emailValidation}
               type="email"
               name="email"
               placeholder="your@email"
@@ -59,6 +88,7 @@ class LoginForm extends Component {
           <label>
             <span>Password</span>
             <input
+              className={passwordValidation}
               type="password"
               name="password"
               placeholder="Password123"

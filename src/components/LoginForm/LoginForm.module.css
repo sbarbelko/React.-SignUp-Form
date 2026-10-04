@@ -12,8 +12,9 @@
 }
 
 .formContainer > h1 {
+  color: rgba(0, 0, 0, 0.63);
   font-size: 1.6rem;
-  font-weight: 400;
+  font-weight: 500;
   padding: 20px 0;
 }
 
@@ -30,10 +31,11 @@
   gap: 10px;
 }
 
-.form > label > input {
+.averageInput {
   padding: 10px;
   border-radius: 5px;
   border: 1px solid rgba(128, 128, 128, 0.205);
+  outline: none;
 }
 
 .form > label > span {
@@ -46,4 +48,12 @@
   padding: 10px;
   border: none;
   background-color: rgb(62, 153, 123);
+}
+
+.validInput {
+  border: 2px solid rgba(0, 128, 0, 0.507);
+}
+
+.invalidInput {
+  border: 2px solid rgba(255, 0, 0, 0.479);
 }
