@@ -1,4 +1,5 @@
 import { Component } from "react";
+import styles from "./LoginForm.module.css";
 
 class LoginForm extends Component {
   constructor(props) {
@@ -31,9 +32,9 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <>
+      <div className={styles.formContainer}>
         <h1>Login Form</h1>
-        <form onSubmit={this.handleSubmit}>
+        <form className={styles.form} onSubmit={this.handleSubmit}>
           <label>
             <span>Full Name</span>
             <input
@@ -67,7 +68,7 @@ class LoginForm extends Component {
           </label>
           <button type="submit">Sign Up</button>
         </form>
-      </>
+      </div>
     );
   }
 }
