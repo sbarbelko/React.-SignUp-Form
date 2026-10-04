@@ -38,9 +38,15 @@ class LoginForm extends Component {
     });
   };
 
+  handleCheckboxChange = (e) => {
+    this.setState({
+      isChecked: e.target.checked,
+    });
+  };
+
   handleSubmit = (e) => {
     e.preventDefault();
-    this.setState({ name: "", email: "", password: "" });
+    this.setState({ name: "", email: "", password: "", isChecked: false });
   };
 
   render() {
@@ -95,6 +101,20 @@ class LoginForm extends Component {
               value={this.state.password}
               onChange={this.handlePasswordChange}
             />
+          </label>
+
+          <label>
+            <div className={styles.checkboxWrapper}>
+              <input
+                type="checkbox"
+                name="isChecked"
+                checked={this.state.isChecked}
+                onChange={this.handleCheckboxChange}
+              />
+              <span className={styles.checkboxText}>
+                I Agree All Statements In Terms Of Service
+              </span>
+            </div>
           </label>
           <button type="submit">Sign Up</button>
         </form>
