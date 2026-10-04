@@ -13,6 +13,8 @@ class LoginForm extends Component {
       isEmailValid: false,
       password: "",
       isPasswordValid: false,
+      passwordConfirm: "",
+      isPasswordConfirmed: false,
       isChecked: false,
     };
   }
@@ -35,6 +37,14 @@ class LoginForm extends Component {
     this.setState({
       password: e.target.value,
       isPasswordValid: /^[A-Za-z0-9]{6,}$/.test(e.target.value),
+      isPasswordConfirmed: this.state.passwordConfirm === e.target.value,
+    });
+  };
+
+  handlePasswordConfirm = (e) => {
+    this.setState({
+      passwordConfirm: e.target.value,
+      isPasswordConfirmed: this.state.password === e.target.value,
     });
   };
 
@@ -46,7 +56,13 @@ class LoginForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.setState({ name: "", email: "", password: "", isChecked: false });
+    this.setState({
+      name: "",
+      email: "",
+      password: "",
+      isChecked: false,
+      passwordConfirm: "",
+    });
   };
 
   render() {
@@ -62,6 +78,11 @@ class LoginForm extends Component {
     const passwordValidation = classNames(styles.averageInput, {
       [styles.validInput]: this.state.isPasswordValid,
       [styles.invalidInput]: !this.state.isPasswordValid,
+    });
+
+    const passwordConfirmation = classNames(styles.averageInput, {
+      [styles.validInput]: this.state.isPasswordConfirmed,
+      [styles.invalidInput]: !this.state.isPasswordConfirmed,
     });
 
     return (
@@ -102,7 +123,16 @@ class LoginForm extends Component {
               onChange={this.handlePasswordChange}
             />
           </label>
-
+          <label>
+            <span>Password confirmation</span>
+            <input
+              className={passwordConfirmation}
+              type="password"
+              name="passwordConfirm"
+              value={this.state.passwordConfirm}
+              onChange={this.handlePasswordConfirm}
+            />
+          </label>
           <label>
             <div className={styles.checkboxWrapper}>
               <input
