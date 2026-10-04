@@ -65,25 +65,21 @@ class LoginForm extends Component {
     });
   };
 
+  nameGiver = (validator) => {
+    return classNames(styles.averageInput, {
+      [styles.validInput]: validator,
+      [styles.invalidInput]: !validator,
+    });
+  };
+
   render() {
-    const nameValidation = classNames(styles.averageInput, {
-      [styles.validInput]: this.state.isNameValid,
-      [styles.invalidInput]: !this.state.isNameValid,
-    });
+    const nameValidation = this.nameGiver(this.state.isNameValid);
 
-    const emailValidation = classNames(styles.averageInput, {
-      [styles.validInput]: this.state.isEmailValid,
-      [styles.invalidInput]: !this.state.isEmailValid,
-    });
-    const passwordValidation = classNames(styles.averageInput, {
-      [styles.validInput]: this.state.isPasswordValid,
-      [styles.invalidInput]: !this.state.isPasswordValid,
-    });
+    const emailValidation = this.nameGiver(this.state.isEmailValid);
 
-    const passwordConfirmation = classNames(styles.averageInput, {
-      [styles.validInput]: this.state.isPasswordConfirmed,
-      [styles.invalidInput]: !this.state.isPasswordConfirmed,
-    });
+    const passwordValidation = this.nameGiver(this.state.isPasswordValid);
+
+    const passwordConfirmation = this.nameGiver(this.state.isPasswordConfirmed);
 
     return (
       <div className={styles.formContainer}>
